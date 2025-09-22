@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
+        /* Global Styles (Same as services.html) */
         :root {
             --primary: #0056b3;
             --primary-dark: #004494;
+            --secondary: #FF6B35;
             --white: #FFFFFF;
             --black: #000000;
             --light-gray: #f5f7fa;
@@ -96,10 +97,28 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            width: 100%;
         }
 
         .btn:hover {
-            background: var(--primary-dark);
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
         }
@@ -111,8 +130,11 @@
             margin-left: 15px;
         }
 
-        .btn-outline:hover {
+        .btn-outline:before {
             background: var(--primary);
+        }
+
+        .btn-outline:hover {
             color: var(--white);
         }
 
@@ -130,7 +152,328 @@
             transform: translateX(-50%);
         }
 
-        /* Header Styles */
+        /* Preloader (Same as services.html) */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            position: relative;
+            width: 75px;
+            height: 100px;
+        }
+
+        .loader__bar {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 50%;
+            background: var(--primary);
+            transform-origin: center bottom;
+            box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .loader__bar:nth-child(1) {
+            left: 0px;
+            transform: scale(1, 0.2);
+            -webkit-animation: barUp1 4s infinite;
+            animation: barUp1 4s infinite;
+        }
+
+        .loader__bar:nth-child(2) {
+            left: 15px;
+            transform: scale(1, 0.4);
+            -webkit-animation: barUp2 4s infinite;
+            animation: barUp2 4s infinite;
+        }
+
+        .loader__bar:nth-child(3) {
+            left: 30px;
+            transform: scale(1, 0.6);
+            -webkit-animation: barUp3 4s infinite;
+            animation: barUp3 4s infinite;
+        }
+
+        .loader__bar:nth-child(4) {
+            left: 45px;
+            transform: scale(1, 0.8);
+            -webkit-animation: barUp4 4s infinite;
+            animation: barUp4 4s infinite;
+        }
+
+        .loader__bar:nth-child(5) {
+            left: 60px;
+            transform: scale(1, 1);
+            -webkit-animation: barUp5 4s infinite;
+            animation: barUp5 4s infinite;
+        }
+
+        .loader__ball {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            -webkit-animation: ball624 4s infinite;
+            animation: ball624 4s infinite;
+        }
+
+        @keyframes ball624 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            5% {
+                transform: translate(8px, -14px);
+            }
+
+            10% {
+                transform: translate(15px, -10px);
+            }
+
+            17% {
+                transform: translate(23px, -24px);
+            }
+
+            20% {
+                transform: translate(30px, -20px);
+            }
+
+            27% {
+                transform: translate(38px, -34px);
+            }
+
+            30% {
+                transform: translate(45px, -30px);
+            }
+
+            37% {
+                transform: translate(53px, -44px);
+            }
+
+            40% {
+                transform: translate(60px, -40px);
+            }
+
+            50% {
+                transform: translate(60px, 0);
+            }
+
+            57% {
+                transform: translate(53px, -14px);
+            }
+
+            60% {
+                transform: translate(45px, -10px);
+            }
+
+            67% {
+                transform: translate(37px, -24px);
+            }
+
+            70% {
+                transform: translate(30px, -20px);
+            }
+
+            77% {
+                transform: translate(22px, -34px);
+            }
+
+            80% {
+                transform: translate(15px, -30px);
+            }
+
+            87% {
+                transform: translate(7px, -44px);
+            }
+
+            90% {
+                transform: translate(0, -40px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @-webkit-keyframes barUp1 {
+            0% {
+                transform: scale(1, 0.2);
+            }
+
+            40% {
+                transform: scale(1, 0.2);
+            }
+
+            50% {
+                transform: scale(1, 1);
+            }
+
+            90% {
+                transform: scale(1, 1);
+            }
+
+            100% {
+                transform: scale(1, 0.2);
+            }
+        }
+
+        @keyframes barUp1 {
+            0% {
+                transform: scale(1, 0.2);
+            }
+
+            40% {
+                transform: scale(1, 0.2);
+            }
+
+            50% {
+                transform: scale(1, 1);
+            }
+
+            90% {
+                transform: scale(1, 1);
+            }
+
+            100% {
+                transform: scale(1, 0.2);
+            }
+        }
+
+        @-webkit-keyframes barUp2 {
+            0% {
+                transform: scale(1, 0.4);
+            }
+
+            40% {
+                transform: scale(1, 0.4);
+            }
+
+            50% {
+                transform: scale(1, 0.8);
+            }
+
+            90% {
+                transform: scale(1, 0.8);
+            }
+
+            100% {
+                transform: scale(1, 0.4);
+            }
+        }
+
+        @keyframes barUp2 {
+            0% {
+                transform: scale(1, 0.4);
+            }
+
+            40% {
+                transform: scale(1, 0.4);
+            }
+
+            50% {
+                transform: scale(1, 0.8);
+            }
+
+            90% {
+                transform: scale(1, 0.8);
+            }
+
+            100% {
+                transform: scale(1, 0.4);
+            }
+        }
+
+        @-webkit-keyframes barUp3 {
+            0% {
+                transform: scale(1, 0.6);
+            }
+
+            100% {
+                transform: scale(1, 0.6);
+            }
+        }
+
+        @keyframes barUp3 {
+            0% {
+                transform: scale(1, 0.6);
+            }
+
+            100% {
+                transform: scale(1, 0.6);
+            }
+        }
+
+        @-webkit-keyframes barUp4 {
+            0% {
+                transform: scale(1, 0.8);
+            }
+
+            40% {
+                transform: scale(1, 0.8);
+            }
+
+            50% {
+                transform: scale(1, 0.4);
+            }
+
+            90% {
+                transform: scale(1, 0.4);
+            }
+
+            100% {
+                transform: scale(1, 0.8);
+            }
+        }
+
+        @keyframes barUp4 {
+            0% {
+                transform: scale(1, 0.8);
+            }
+
+            40% {
+                transform: scale(1, 0.8);
+            }
+
+            50% {
+                transform: scale(1, 0.4);
+            }
+
+            90% {
+                transform: scale(1, 0.4);
+            }
+
+            100% {
+                transform: scale(1, 0.8);
+            }
+        }
+
+        @-webkit-keyframes barUp5 {
+            /* ... (same as services.html) ... */
+        }
+
+        @keyframes barUp5 {
+            /* ... (same as services.html) ... */
+        }
+
+        /* Header Styles (Same as services.html) */
         header {
             position: fixed;
             top: 0;
@@ -140,6 +483,13 @@
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
         }
 
         .header-container {
@@ -147,6 +497,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            transition: var(--transition);
         }
 
         .logo {
@@ -176,6 +527,7 @@
 
         nav ul li {
             margin-left: 30px;
+            position: relative;
         }
 
         nav ul li a {
@@ -207,115 +559,170 @@
             color: var(--primary);
         }
 
+        .nav-indicator {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
         .hamburger {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
         }
 
-        /* Contact Hero */
-        .contact-hero {
-            padding: 180px 0 100px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Page Header (Breadcrumb) */
+        .page-header {
+            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 68, 148, 0.8)), url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 160px 0 80px;
             text-align: center;
-            position: relative;
-            z-index: 2;
+            color: var(--white);
+            margin-top: 80px;
         }
 
-        .contact-hero h1 {
-            font-size: 3.5rem;
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--white);
             margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
         }
 
-        .contact-hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--dark-gray);
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .breadcrumb-item {
+            margin: 0 10px;
+            font-size: 1.1rem;
+        }
+
+        .breadcrumb-item a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            color: var(--white);
+            margin-right: 15px;
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
         .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            gap: 40px;
         }
 
         .contact-info {
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 40px;
         }
 
-        .contact-card {
+        .contact-info h3 {
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .contact-details i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-details span {
+            flex: 1;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             background: var(--light-gray);
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            color: var(--primary);
+            border-radius: 50%;
+            margin-right: 10px;
             transition: var(--transition);
         }
 
-        .contact-card:hover {
+        .social-links a:hover {
+            background: var(--primary);
+            color: var(--white);
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .contact-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .contact-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
+        /* Contact Form */
         .contact-form {
             background: var(--white);
-            border-radius: 10px;
             padding: 40px;
+            border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        .form-group {
+        .contact-form h3 {
             margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--dark-gray);
         }
 
         .form-control {
             width: 100%;
-            padding: 14px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 1rem;
             font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
             transition: var(--transition);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
         }
 
         textarea.form-control {
@@ -324,40 +731,29 @@
         }
 
         .submit-btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .form-message {
-            padding: 15px;
-            margin-top: 20px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
             border-radius: 4px;
-            text-align: center;
-            display: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .form-message.success {
-            background: #d4edda;
-            color: #155724;
-            display: block;
-        }
-
-        .form-message.error {
-            background: #f8d7da;
-            color: #721c24;
-            display: block;
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
         }
 
         /* Map Section */
         .map-section {
-            padding: 0 0 80px;
+            padding: 0 0 100px;
         }
 
         .map-container {
-            height: 500px;
+            height: 450px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -369,11 +765,104 @@
             border: none;
         }
 
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: var(--white);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 20px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 68, 148, 0.9)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta h2:after {
+            background: var(--white);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+
+        .cta .btn {
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cta .btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
         /* Footer */
         footer {
             background: var(--black);
             color: var(--white);
             padding: 60px 0 30px;
+            position: relative;
         }
 
         .footer-container {
@@ -420,16 +909,16 @@
             padding-left: 5px;
         }
 
-        .contact-info-list {
+        .contact-info {
             list-style: none;
         }
 
-        .contact-info-list li {
+        .contact-info li {
             display: flex;
             margin-bottom: 15px;
         }
 
-        .contact-info-list i {
+        .contact-info i {
             color: var(--primary);
             margin-right: 15px;
             font-size: 1.2rem;
@@ -466,6 +955,36 @@
             color: #777;
         }
 
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -478,6 +997,17 @@
             }
         }
 
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             h1 {
@@ -486,8 +1016,8 @@
             h2 {
                 font-size: 2.2rem;
             }
-            .contact-hero h1 {
-                font-size: 2.8rem;
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -513,11 +1043,15 @@
                 margin: 15px 0;
                 text-align: center;
             }
-            .contact-container {
-                grid-template-columns: 1fr;
+            .page-header {
+                padding: 140px 0 60px;
+                margin-top: 70px;
             }
-            .map-container {
-                height: 400px;
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            .contact-form {
+                padding: 30px;
             }
         }
 
@@ -528,19 +1062,32 @@
             h2 {
                 font-size: 1.8rem;
             }
-            .contact-hero h1 {
-                font-size: 2.2rem;
+            .page-header h1 {
+                font-size: 2rem;
             }
             .contact-form {
-                padding: 30px 20px;
+                padding: 20px;
             }
             .map-container {
-                height: 300px;
+                height: 350px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <!-- Bar and Ball Loader from Uiverse.io by Nawsome -->
+        <div class="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container header-container">
@@ -552,9 +1099,10 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
+                <div class="nav-indicator"></div>
                 <div class="hamburger" id="hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -562,87 +1110,76 @@
         </div>
     </header>
 
-    <!-- Contact Hero Section -->
-    <section class="contact-hero">
+    <!-- Page Header -->
+    <section class="page-header">
         <div class="container">
-            <div class="contact-hero-content">
-                <h1>Get in Touch With Us</h1>
-                <p>Have questions or ready to start a project? Reach out to our team for expert IT solutions tailored to your business needs.</p>
-                <a href="#contact-form" class="btn">Send a Message</a>
-            </div>
+            <h1>Contact Us</h1>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Contact</li>
+            </ul>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact-section">
         <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you. Reach out to us with any questions or inquiries.</p>
+            </div>
             <div class="contact-container">
                 <div class="contact-info">
-                    <div class="contact-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Our Location</h3>
-                        <p>406 Marula Street, Alveda Park, Johannesburg, 2091</p>
-                        <p>South Africa</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <i class="fas fa-phone-alt"></i>
-                        <h3>Phone & Email</h3>
-                        <p><strong>Phone:</strong> +27 82 860 0036</p>
-                        <p><strong>Email:</strong> info@lukiyagroup.co.za</p>
-                        <p><strong>Support:</strong> support@lukiyagroup.co.za</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <i class="fas fa-clock"></i>
-                        <h3>Working Hours</h3>
-                        <p><strong>Monday - Friday:</strong> 8:00 AM - 5:00 PM</p>
-                        <p><strong>Saturday - Sunday</strong> Closed</p>
+                    <h3>Contact Information</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>406 Marula Street, Alveda Park, Johannesburg, 2091</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+27 82 860 0036</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lukiyagroup.co.za</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8AM - 5PM, Sat-Sun: Closed</span>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                
-                <div class="contact-form" id="contact-form">
-                    <h2>Send Us a Message</h2>
-                    <p>Fill out the form below and our team will get back to you within 24 hours.</p>
-                    
-                    <form id="contactForm" action="https://formspree.io/f/mzbnvqkp" method="POST">
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" required>
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
                         </div>
-                        
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+27 11 123 4567">
+                            <input type="tel" id="phone" class="form-control" placeholder="Your Phone">
                         </div>
-                        
                         <div class="form-group">
-                            <label for="service">Service Interested In</label>
-                            <select id="service" name="service" class="form-control">
-                                <option value="">Select a Service</option>
-                                <option value="networking">Data Networking</option>
-                                <option value="alarm">Alarm Systems</option>
-                                <option value="gate">Gate & Garage Motors</option>
-                                <option value="website">Website Development</option>
-                                <option value="cctv">CCTV Installations</option>
-                                <option value="studio">Home Studio & Visuals</option>
-                                <option value="other">Other Services</option>
-                            </select>
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Subject" required>
                         </div>
-                        
                         <div class="form-group">
-                            <label for="message">Your Message *</label>
-                            <textarea id="message" name="message" class="form-control" placeholder="How can we help you?" required></textarea>
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
                         </div>
-                        
-                        <button type="submit" class="btn submit-btn">Send Message</button>
-                        
-                        <div class="form-message" id="formMessage"></div>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -652,14 +1189,66 @@
     <!-- Map Section -->
     <section class="map-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Find Us on Map</h2>
-                <p>Visit our office or get directions to our location</p>
-            </div>
-            
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.105914288121!2d28.035420276225396!3d-26.19299887707024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1c4c9f7c0d%3A0x6a9a8a7d5b5b5b5b!2sJohannesburg%2C%20South%20Africa!5e0!3m2!1sen!2sus!4v1717412345678!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.847390902746!2d28.07260697609603!3d-26.16248287769857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9513c61bfd4f2f%3A0x8b5b1b3e0c0b5b1d!2s406%20Marula%20St%2C%20Alveda%20Park%2C%20Johannesburg%2C%202091!5e0!3m2!1sen!2sza!4v1647350000000!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions about contacting us</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your typical response time for inquiries?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We strive to respond to all inquiries within 24 hours during business days. For urgent matters, we recommend calling us directly at +27 82 860 0036.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer free consultations?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer free initial consultations for all new clients. During this consultation, we'll discuss your needs and provide an overview of how we can help.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What areas do you serve?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While we're based in Johannesburg, we serve clients throughout South Africa. Remote services are also available for certain IT solutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I schedule an appointment?</h3>
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can schedule an appointment by calling us, filling out the contact form, or sending us an email. Our team will confirm your appointment within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today to discuss your IT needs and how we can help your business thrive with our premium solutions.</p>
+            <a href="contact.html" class="btn">Contact Us Now</a>
         </div>
     </section>
 
@@ -669,7 +1258,7 @@
             <div class="footer-container">
                 <div class="footer-col">
                     <h3>Lukiya Group</h3>
-                    <p>Providing premium IT solutions since 2008. We specialize in delivering innovative and reliable technology services to businesses across industries.</p>
+                    <p>Providing premium IT solutions since 2016. We specialize in delivering innovative and reliable technology services to businesses across industries.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -694,16 +1283,16 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Contact Us</h3>
-                    <ul class="contact-info-list">
+                    <ul class="contact-info">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>406 Marula Street Street, Alveda Park, Johannesburg, 2091</span>
+                            <span>406 Marula Street, Alveda Park, Johannesburg, 2091</span>
                         </li>
                         <li>
                             <i class="fas fa-phone"></i>
@@ -715,7 +1304,7 @@
                         </li>
                         <li>
                             <i class="fas fa-clock"></i>
-                            <span>Mon-Fri: 8AM - 6PM, Sat-Sun: Closed</span>
+                            <span>Mon-Fri: 8AM - 5PM, Sat-Sun: Closed</span>
                         </li>
                     </ul>
                 </div>
@@ -726,10 +1315,25 @@
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 1500);
+        });
+
         // Mobile Navigation
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
+        const navIndicator = document.querySelector('.nav-indicator');
+        const navLinks = document.querySelectorAll('#nav-menu a');
 
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
@@ -738,61 +1342,31 @@
                 : '<i class="fas fa-bars"></i>';
         });
 
+        // Update nav indicator position
+        function updateNavIndicator() {
+            const activeLink = document.querySelector('#nav-menu a.active');
+            if (activeLink) {
+                const linkRect = activeLink.getBoundingClientRect();
+                const menuRect = navMenu.getBoundingClientRect();
+                navIndicator.style.width = `${linkRect.width}px`;
+                navIndicator.style.left = `${linkRect.left - menuRect.left}px`;
+            }
+        }
+
+        // Initialize nav indicator
+        window.addEventListener('load', updateNavIndicator);
+        window.addEventListener('resize', updateNavIndicator);
+
         // Close mobile menu when clicking on a link
         document.querySelectorAll('#nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Form submission handling
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            
-            // Form data
-            const formData = new FormData(this);
-            
-            // Send to Formspree
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success message
-                    formMessage.textContent = "Thank you! Your message has been sent successfully.";
-                    formMessage.className = 'form-message success';
-                    contactForm.reset();
-                } else {
-                    // Error message
-                    formMessage.textContent = "Oops! There was a problem sending your message. Please try again.";
-                    formMessage.className = 'form-message error';
-                }
-            })
-            .catch(error => {
-                // Error message
-                formMessage.textContent = "Oops! There was a problem sending your message. Please try again.";
-                formMessage.className = 'form-message error';
-            })
-            .finally(() => {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Send Message';
                 
-                // Scroll to message
-                formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Update active class
+                navLinks.forEach(item => item.classList.remove('active'));
+                link.classList.add('active');
+                updateNavIndicator();
             });
         });
 
@@ -800,13 +1374,66 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.classList.add('header-scrolled');
             } else {
-                header.style.boxShadow = 'none';
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.classList.remove('header-scrolled');
+            }
+            
+            // Show/hide scroll to top button
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('active');
+            } else {
+                scrollTop.classList.remove('active');
             }
         });
+
+        // Scroll to top functionality
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // FAQ Accordion functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Contact form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Email validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // If validation passes, show success message
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        }
 
         // Animation on scroll
         const observerOptions = {
