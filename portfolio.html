@@ -1,1 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Lukiya Group | Premium IT Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles (Same as services.html) */
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #004494;
+            --secondary: #FF6B35;
+            --white: #FFFFFF;
+            --black: #000000;
+            --light-gray: #f5f7fa;
+            --dark-gray: #333333;
+            --transition: all 0.3s ease;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:before {
+            background: var(--primary);
+        }
+
+        .btn-outline:hover {
+            color: var(--white);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Preloader (Same as services.html) */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            position: relative;
+            width: 75px;
+            height: 100px;
+        }
+
+        .loader__bar {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 50%;
+            background: var(--primary);
+            transform-origin: center bottom;
+            box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .loader__bar:nth-child(1) {
+            left: 0px;
+            transform: scale(1, 0.2);
+            -webkit-animation: barUp1 4s infinite;
+            animation: barUp1 4s infinite;
+        }
+
+        .loader__bar:nth-child(2) {
+            left: 15px;
+            transform: scale(1, 0.4);
+            -webkit-animation: barUp2 4s infinite;
+            animation: barUp2 4s infinite;
+        }
+
+        .loader__bar:nth-child(3) {
+            left: 30px;
+            transform: scale(1, 0.6);
+            -webkit-animation: barUp3 4s infinite;
+            animation: barUp3 4s infinite;
+        }
+
+        .loader__bar:nth-child(4) {
+            left: 45px;
+            transform: scale(1, 0.8);
+            -webkit-animation: barUp4 4s infinite;
+            animation: barUp4 4s infinite;
+        }
+
+        .loader__bar:nth-child(5) {
+            left: 60px;
+            transform: scale(1, 1);
+            -webkit-animation: barUp5 4s infinite;
+            animation: barUp5 4s infinite;
+        }
+
+        .loader__ball {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            -webkit-animation: ball624 4s infinite;
+            animation: ball624 4s infinite;
+        }
+
+        @keyframes ball624 {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            5% {
+                transform: translate(8px, -14px);
+            }
+
+            10% {
+                transform: translate(15px, -10px);
+            }
+
+            17% {
+                transform: translate(23px, -24px);
+            }
+
+            20% {
+                transform: translate(30px, -20px);
+            }
+
+            27% {
+                transform: translate(38px, -34px);
+            }
+
+            30% {
+                transform: translate(45px, -30px);
+            }
+
+            37% {
+                transform: translate(53px, -44px);
+            }
+
+            40% {
+                transform: translate(60px, -40px);
+            }
+
+            50% {
+                transform: translate(60px, 0);
+            }
+
+            57% {
+                transform: translate(53px, -14px);
+            }
+
+            60% {
+                transform: translate(45px, -10px);
+            }
+
+            67% {
+                transform: translate(37px, -24px);
+            }
+
+            70% {
+                transform: translate(30px, -20px);
+            }
+
+            77% {
+                transform: translate(22px, -34px);
+            }
+
+            80% {
+                transform: translate(15px, -30px);
+            }
+
+            87% {
+                transform: translate(7px, -44px);
+            }
+
+            90% {
+                transform: translate(0, -40px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @-webkit-keyframes barUp1 {
+            0% {
+                transform: scale(1, 0.2);
+            }
+
+            40% {
+                transform: scale(1, 0.2);
+            }
+
+            50% {
+                transform: scale(1, 1);
+            }
+
+            90% {
+                transform: scale(1, 1);
+            }
+
+            100% {
+                transform: scale(1, 0.2);
+            }
+        }
+
+        @keyframes barUp1 {
+            0% {
+                transform: scale(1, 0.2);
+            }
+
+            40% {
+                transform: scale(1, 0.2);
+            }
+
+            50% {
+                transform: scale(1, 1);
+            }
+
+            90% {
+                transform: scale(1, 1);
+            }
+
+            100% {
+                transform: scale(1, 0.2);
+            }
+        }
+
+        @-webkit-keyframes barUp2 {
+            0% {
+                transform: scale(1, 0.4);
+            }
+
+            40% {
+                transform: scale(1, 0.4);
+            }
+
+            50% {
+                transform: scale(1, 0.8);
+            }
+
+            90% {
+                transform: scale(1, 0.8);
+            }
+
+            100% {
+                transform: scale(1, 0.4);
+            }
+        }
+
+        @keyframes barUp2 {
+            0% {
+                transform: scale(1, 0.4);
+            }
+
+            40% {
+                transform: scale(1, 0.4);
+            }
+
+            50% {
+                transform: scale(1, 0.8);
+            }
+
+            90% {
+                transform: scale(1, 0.8);
+            }
+
+            100% {
+                transform: scale(1, 0.4);
+            }
+        }
+
+        @-webkit-keyframes barUp3 {
+            0% {
+                transform: scale(1, 0.6);
+            }
+
+            100% {
+                transform: scale(1, 0.6);
+            }
+        }
+
+        @keyframes barUp3 {
+            0% {
+                transform: scale(1, 0.6);
+            }
+
+            100% {
+                transform: scale(1, 0.6);
+            }
+        }
+
+        @-webkit-keyframes barUp4 {
+            0% {
+                transform: scale(1, 0.8);
+            }
+
+            40% {
+                transform: scale(1, 0.8);
+            }
+
+            50% {
+                transform: scale(1, 0.4);
+            }
+
+            90% {
+                transform: scale(1, 0.4);
+            }
+
+            100% {
+                transform: scale(1, 0.8);
+            }
+        }
+
+        @keyframes barUp4 {
+            0% {
+                transform: scale(1, 0.8);
+            }
+
+            40% {
+                transform: scale(1, 0.8);
+            }
+
+            50% {
+                transform: scale(1, 0.4);
+            }
+
+            90% {
+                transform: scale(1, 0.4);
+            }
+
+            100% {
+                transform: scale(1, 0.8);
+            }
+        }
+
+        @-webkit-keyframes barUp5 {
+            /* ... (same as services.html) ... */
+        }
+
+        @keyframes barUp5 {
+            /* ... (same as services.html) ... */
+        }
+
+        /* Header Styles (Same as services.html) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--black);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding-bottom: 5px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .nav-indicator {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Page Header (Breadcrumb) */
+        .page-header {
+            background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 68, 148, 0.8)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            padding: 160px 0 80px;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .breadcrumb-item {
+            margin: 0 10px;
+            font-size: 1.1rem;
+        }
+
+        .breadcrumb-item a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--secondary);
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            color: var(--white);
+            margin-right: 15px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 100px 0;
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            margin: 5px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 86, 179, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay-content {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .portfolio-overlay-content h3 {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-overlay-content p {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .portfolio-overlay-content .btn {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .portfolio-overlay-content .btn:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .portfolio-info {
+            padding: 20px;
+            background: var(--white);
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .portfolio-category {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--light-gray);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-item {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-content {
+            position: relative;
+            padding-left: 80px;
+        }
+
+        .testimonial-content:before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -20px;
+            font-size: 5rem;
+            color: var(--primary);
+            font-family: Arial, sans-serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .author-info p {
+            margin: 0;
+            color: var(--dark-gray);
+        }
+
+        /* CTA Section (Same as services.html) */
+        .cta {
+            background: linear-gradient(rgba(0, 86, 179, 0.9), rgba(0, 68, 148, 0.9)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .cta h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta h2:after {
+            background: var(--white);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+
+        .cta .btn {
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cta .btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Footer (Same as services.html) */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 0 30px;
+            position: relative;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #222;
+            color: var(--white);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+            nav ul.active {
+                left: 0;
+            }
+            nav ul li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            .page-header {
+                padding: 140px 0 60px;
+                margin-top: 70px;
+            }
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-content {
+                padding-left: 60px;
+            }
+            .testimonial-content:before {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .portfolio-info {
+                padding: 15px;
+            }
+            .testimonial-content {
+                padding-left: 40px;
+            }
+            .testimonial-content:before {
+                font-size: 3rem;
+                top: -10px;
+            }
+            .testimonial-item {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <!-- Bar and Ball Loader from Uiverse.io by Nawsome -->
+        <div class="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Lukiya<span>Group</span></h1>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-indicator"></div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Portfolio</h1>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Portfolio</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Work</h2>
+                <p>Explore our successful projects and client solutions</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="networking">Data Networking</button>
+                <button class="filter-btn" data-filter="alarm">Alarm Systems</button>
+                <button class="filter-btn" data-filter="gate">Gate & Garage Motors</button>
+                <button class="filter-btn" data-filter="cctv">CCTV Installations</button>
+                <button class="filter-btn" data-filter="studio">Home Studio & Visuals</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item" data-category="networking">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corporate Network Infrastructure">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <h3>Corporate Network Infrastructure</h3>
+                                <p>Complete network setup for a large financial firm</p>
+                                <a href="#" class="btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Data Networking</span>
+                        <h3>Corporate Network Infrastructure</h3>
+                        <p>Designed and implemented a secure, high-speed network for a financial services company with multiple locations.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="portfolio-item" data-category="alarm">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Smart Home Security System">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <h3>Smart Home Security System</h3>
+                                <p>Comprehensive security solution for a luxury residence</p>
+                                <a href="#" class="btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Alarm Systems</span>
+                        <h3>Smart Home Security System</h3>
+                        <p>Installed a state-of-the-art alarm system with smart sensors and remote monitoring capabilities.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="portfolio-item" data-category="gate">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1605155111405-9fb5d7b71b39?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Automated Gate System">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <h3>Automated Gate System</h3>
+                                <p>Secure access control for a residential complex</p>
+                                <a href="#" class="btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Gate & Garage Motors</span>
+                        <h3>Automated Gate System</h3>
+                        <p>Designed and installed an automated gate system with remote access and visitor management.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="portfolio-item" data-category="cctv">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Retail Surveillance System">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <h3>Retail Surveillance System</h3>
+                                <p>Complete CCTV installation for a shopping center</p>
+                                <a href="#" class="btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">CCTV Installations</span>
+                        <h3>Retail Surveillance System</h3>
+                        <p>Implemented a comprehensive CCTV system with 40+ cameras and centralized monitoring.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="portfolio-item" data-category="studio">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Professional Home Studio">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <h3>Professional Home Studio</h3>
+                                <p>Audio-visual setup for a content creator</p>
+                                <a href="#" class="btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Home Studio & Visuals</span>
+                        <h3>Professional Home Studio</h3>
+                        <p>Designed and equipped a professional home studio with high-quality audio and lighting solutions.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="portfolio-item" data-category="networking">
+                    <div class="portfolio-image">
+                        <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Enterprise Wireless Network">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-overlay-content">
+                                <h3>Enterprise Wireless Network</h3>
+                                <p>Seamless WiFi coverage for a corporate campus</p>
+                                <a href="#" class="btn">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-category">Data Networking</span>
+                        <h3>Enterprise Wireless Network</h3>
+                        <p>Deployed a high-density wireless network across a 5-building corporate campus with seamless roaming.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>By The Numbers</h2>
+                <p>Our achievements and milestones</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number" data-count="250">0</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-text">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-text">Team Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-number" data-count="12">0</div>
+                    <div class="stat-text">Awards Won</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about our work</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Lukiya Group transformed our office network infrastructure. The team was professional, efficient, and delivered beyond our expectations. Our connectivity issues are completely resolved.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
+                            <div class="author-info">
+                                <h4>John Smith</h4>
+                                <p>CTO, TechCorp International</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">The security system installed by Lukiya Group has given us complete peace of mind. Their attention to detail and post-installation support has been exceptional.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Homeowner, Johannesburg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">We hired Lukiya Group for our retail chain's CCTV installation. The system is robust, user-friendly, and has significantly improved our security operations.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="David Wilson">
+                            <div class="author-info">
+                                <h4>David Wilson</h4>
+                                <p>Operations Manager, RetailPlus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Contact us today to discuss how we can bring your IT solutions to life with our expertise and experience.</p>
+            <a href="contact.html" class="btn">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Lukiya Group</h3>
+                    <p>Providing premium IT solutions since 2016. We specialize in delivering innovative and reliable technology services to businesses across industries.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html">Data Networking</a></li>
+                        <li><a href="services.html">Alarm Systems</a></li>
+                        <li><a href="services.html">Gate & Garage Motors</a></li>
+                        <li><a href="services.html">Website Development</a></li>
+                        <li><a href="services.html">CCTV Installations</a></li>
+                        <li><a href="services.html">Home Studio & Visuals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>406 Marula Street, Alveda Park, Johannesburg, 2091</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+27 82 860 0036</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@lukiyagroup.co.za</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8AM - 5PM, Sat-Sun: Closed</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Lukiya Group. All Rights Reserved. Developed by Lukiya Group</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navIndicator = document.querySelector('.nav-indicator');
+        const navLinks = document.querySelectorAll('#nav-menu a');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Update nav indicator position
+        function updateNavIndicator() {
+            const activeLink = document.querySelector('#nav-menu a.active');
+            if (activeLink) {
+                const linkRect = activeLink.getBoundingClientRect();
+                const menuRect = navMenu.getBoundingClientRect();
+                navIndicator.style.width = `${linkRect.width}px`;
+                navIndicator.style.left = `${linkRect.left - menuRect.left}px`;
+            }
+        }
+
+        // Initialize nav indicator
+        window.addEventListener('load', updateNavIndicator);
+        window.addEventListener('resize', updateNavIndicator);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                
+                // Update active class
+                navLinks.forEach(item => item.classList.remove('active'));
+                link.classList.add('active');
+                updateNavIndicator();
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            // Show/hide scroll to top button
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('active');
+            } else {
+                scrollTop.classList.remove('active');
+            }
+        });
+
+        // Scroll to top functionality
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Portfolio Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Get filter value
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Filter portfolio items
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Stats Counter Animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let counted = false;
+
+        function animateStats() {
+            const statsSection = document.querySelector('.stats-section');
+            const statsSectionTop = statsSection.offsetTop;
+            const statsSectionHeight = statsSection.offsetHeight;
+            
+            if (window.scrollY > (statsSectionTop - window.innerHeight + 100) && !counted) {
+                counted = true;
+                
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-count'));
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            clearInterval(timer);
+                            current = target;
+                        }
+                        stat.textContent = Math.floor(current);
+                    }, 16);
+                });
+            }
+        }
+
+        window.addEventListener('scroll', animateStats);
+
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
